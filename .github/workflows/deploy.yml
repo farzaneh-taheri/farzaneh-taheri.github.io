@@ -19,6 +19,7 @@ jobs:
         uses: withastro/action@v2
         with:
           path: . # مسیر ریشه پروژه
+          node-version: 22 # <--- این خط را اضافه کنید
   deploy:
     needs: build
     runs-on: ubuntu-latest
