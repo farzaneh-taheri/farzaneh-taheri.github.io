@@ -1,0 +1,247 @@
+---
+import '../styles/global.css';
+import { ClientRouter } from 'astro:transitions';
+import Topbar from '../components/Topbar.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import MobileBar from '../components/MobileBar.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  noindex?: boolean;
+}
+const { title, description, noindex = false } = Astro.props;
+---
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>{title} | فرطا</title>
+  <meta name="description" content={description}>
+  {noindex && <meta name="robots" content="noindex, nofollow">}
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛡️</text></svg>">
+  <noscript><style>.reveal { opacity: 1 !important; transform: none !important; }</style></noscript>
+  <ClientRouter />
+</head>
+<body class="bg-void pb-[72px] font-sans text-ink antialiased selection:bg-neon selection:text-void lg:pb-0">
+  <div id="space-layer" aria-hidden="true" transition:persist>
+    <div class="nebula"></div>
+    <canvas id="space-canvas"></canvas>
+    <div class="vignette"></div>
+  </div>
+  <Topbar />
+  <Nav />
+  <main class="content">
+    <slot />
+  </main>
+  <Footer />
+  <MobileBar />
+
+  <script>
+    const w = window as any;
+
+    function startNetwork(canvas: HTMLCanvasElement) {
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+      type P = { x: number; y: number; vx: number; vy: number };
+      let width = 0, height = 0, points: P[] = [];
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const resize = () => {
+        const r = canvas.parentElement!.getBoundingClientRect();
+        width = r.width; height = r.height;
+        canvas.width = width * dpr; canvas.height = height * dpr;
+        canvas.style.width = width + 'px'; canvas.style.height = height + 'px';
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        const count = Math.max(24, Math.min(56, Math.floor((width * height) / 20000)));
+        points = Array.from({ length: count }, () => ({
+          x: Math.random() * width, y: Math.random() * height,
+          vx: (Math.random() - 0.5) * 0.25, vy: (Math.random() - 0.5) * 0.25,
+        }));
+      };
+      const tick = () => {
+        ctx.clearRect(0, 0, width, height);
+        for (const p of points) {
+          p.x += p.vx; p.y += p.vy;
+          if (p.x < 0 || p.x > width) p.vx *= -1;
+          if (p.y < 0 || p.y > height) p.vy *= -1;
+        }
+        for (let i = 0; i < points.length; i++) {
+          for (let j = i + 1; j < points.length; j++) {
+            const a = points[i], b = points[j];
+            const d = Math.hypot(a.x - b.x, a.y - b.y);
+            if (d < 130) {
+              ctx.strokeStyle = `rgba(57,255,156,${0.16 * (1 - d / 130)})`;
+              ctx.lineWidth = 1;
+              ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+            }
+          }
+        }
+        ctx.fillStyle = 'rgba(57,255,156,0.55)';
+        for (const p of points) { ctx.beginPath(); ctx.arc(p.x, p.y, 1.6, 0, Math.PI * 2); ctx.fill(); }
+        w.__fartaRaf = requestAnimationFrame(tick);
+      };
+      cancelAnimationFrame(w.__fartaRaf);
+      resize();
+      tick();
+      w.__fartaResize = resize;
+    }
+
+
+    function startSpace(canvas: HTMLCanvasElement) {
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+      type Star = { x: number; y: number; z: number; r: number; a: number; tw: number; ph: number; hue: number };
+      type Meteor = { x: number; y: number; vx: number; vy: number; life: number; max: number };
+      let W = 0, H = 0, stars: Star[] = [];
+      const meteors: Meteor[] = [];
+      let nextMeteor = performance.now() + 2500;
+
+      const build = () => {
+        W = window.innerWidth; H = window.innerHeight;
+        canvas.width = W * dpr; canvas.height = H * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        const n = Math.max(70, Math.min(210, Math.floor((W * H) / 9500)));
+        stars = Array.from({ length: n }, () => {
+          const z = 0.25 + Math.random() * 0.75;
+          return { x: Math.random() * W, y: Math.random() * H, z, r: 0.35 + z * 1.05, a: 0.25 + Math.random() * 0.6, tw: 0.6 + Math.random() * 1.8, ph: Math.random() * 6.28, hue: Math.random() < 0.18 ? 1 : 0 };
+        });
+      };
+
+      const draw = (t: number) => {
+        ctx.clearRect(0, 0, W, H);
+        const sy = window.scrollY;
+        for (const s of stars) {
+          const y = (((s.y - sy * s.z * 0.12) % H) + H) % H;
+          const tw = reduce ? 1 : 0.55 + 0.45 * Math.sin(t / 1000 * s.tw + s.ph);
+          ctx.globalAlpha = s.a * tw;
+          ctx.fillStyle = s.hue ? '#39FF9C' : '#d6ffe9';
+          ctx.beginPath(); ctx.arc(s.x, y, s.r, 0, Math.PI * 2); ctx.fill();
+        }
+        ctx.globalAlpha = 1;
+        if (reduce) return;
+        if (t > nextMeteor) {
+          meteors.push({ x: W * (0.35 + Math.random() * 0.65), y: Math.random() * H * 0.35, vx: -(5 + Math.random() * 3), vy: 2.4 + Math.random() * 1.6, life: 0, max: 55 + Math.random() * 25 });
+          nextMeteor = t + 5500 + Math.random() * 5500;
+        }
+        for (let i = meteors.length - 1; i >= 0; i--) {
+          const m = meteors[i];
+          m.x += m.vx; m.y += m.vy; m.life++;
+          const k = 1 - m.life / m.max;
+          if (k <= 0) { meteors.splice(i, 1); continue; }
+          const g = ctx.createLinearGradient(m.x, m.y, m.x - m.vx * 14, m.y - m.vy * 14);
+          g.addColorStop(0, `rgba(220,255,235,${0.9 * k})`);
+          g.addColorStop(1, 'rgba(57,255,156,0)');
+          ctx.strokeStyle = g; ctx.lineWidth = 1.4;
+          ctx.beginPath(); ctx.moveTo(m.x, m.y); ctx.lineTo(m.x - m.vx * 14, m.y - m.vy * 14); ctx.stroke();
+        }
+      };
+
+      const loop = (t: number) => { draw(t); w.__fartaSpaceRaf = requestAnimationFrame(loop); };
+      build();
+      if (reduce) { draw(0); } else { cancelAnimationFrame(w.__fartaSpaceRaf); w.__fartaSpaceRaf = requestAnimationFrame(loop); }
+      w.__fartaSpaceBuild = () => { build(); if (reduce) draw(0); };
+    }
+
+    function initPage() {
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // Reveal on scroll (staggered by data-delay). The delay is cleared afterwards so hover transitions stay instant.
+      const revealEls = document.querySelectorAll<HTMLElement>('.reveal:not(.is-visible):not([data-obs])');
+      if (reduce || !('IntersectionObserver' in window)) {
+        revealEls.forEach(el => el.classList.add('is-visible'));
+      } else {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            const el = entry.target as HTMLElement;
+            const delay = Number(el.dataset.delay || 0);
+            el.style.transitionDelay = `${delay}ms`;
+            el.classList.add('is-visible');
+            io.unobserve(el);
+            window.setTimeout(() => { el.style.transitionDelay = ''; }, delay + 900);
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+        revealEls.forEach(el => { el.setAttribute('data-obs', '1'); io.observe(el); });
+      }
+
+      // Cursor spotlight on cards
+      document.querySelectorAll<HTMLElement>('.spot:not([data-spot])').forEach(card => {
+        card.setAttribute('data-spot', '1');
+        card.addEventListener('pointermove', (e) => {
+          const rect = card.getBoundingClientRect();
+          card.style.setProperty('--mx', `${e.clientX - rect.left}px`);
+          card.style.setProperty('--my', `${e.clientY - rect.top}px`);
+        });
+      });
+
+      // Count-up numbers
+      const fmt = (el: HTMLElement, v: number) => {
+        const decimals = el.dataset.decimals ? parseInt(el.dataset.decimals) : 0;
+        el.textContent = v.toLocaleString('fa-IR', { maximumFractionDigits: decimals, minimumFractionDigits: decimals }) + (el.dataset.suffix || '');
+      };
+      const countEls = document.querySelectorAll<HTMLElement>('.count-up:not(.counted)');
+      if (reduce) {
+        countEls.forEach(el => { el.classList.add('counted'); fmt(el, parseFloat(el.dataset.target || '0')); });
+      } else {
+        const cio = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            const el = entry.target as HTMLElement;
+            cio.unobserve(el);
+            el.classList.add('counted');
+            const target = parseFloat(el.dataset.target || '0');
+            const start = performance.now();
+            const step = (now: number) => {
+              const p = Math.min((now - start) / 1400, 1);
+              fmt(el, target * (1 - Math.pow(1 - p, 3)));
+              if (p < 1) requestAnimationFrame(step);
+            };
+            requestAnimationFrame(step);
+          });
+        }, { threshold: 0.5 });
+        countEls.forEach(el => cio.observe(el));
+      }
+
+      // Deep-space starfield (persisted element, started once)
+      const space = document.getElementById('space-canvas') as HTMLCanvasElement | null;
+      if (space && w.__fartaSpaceEl !== space) { w.__fartaSpaceEl = space; startSpace(space); }
+
+      // Real-time clock in the live console
+      clearInterval(w.__fartaClock);
+      const clocks = document.querySelectorAll<HTMLElement>('.live-clock');
+      if (clocks.length) {
+        const tickClock = () => {
+          const t = new Date().toLocaleTimeString('fa-IR', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
+          clocks.forEach(c => { c.textContent = t; });
+        };
+        tickClock();
+        w.__fartaClock = window.setInterval(tickClock, 1000);
+      }
+
+      // Hero network canvas
+      const canvas = document.querySelector<HTMLCanvasElement>('.particle-canvas:not([data-net])');
+      if (canvas && !reduce) { canvas.setAttribute('data-net', '1'); startNetwork(canvas); }
+    }
+
+    if (!w.__fartaBound) {
+      w.__fartaBound = true;
+      // Mobile drawer (delegated so it survives page transitions)
+      document.addEventListener('click', (e) => {
+        const target = e.target as HTMLElement;
+        const drawer = document.getElementById('mobileDrawer');
+        if (!drawer) return;
+        if (target.closest('[data-mobile-toggle]')) drawer.classList.toggle('hidden');
+        else if (target.closest('#mobileDrawer a')) drawer.classList.add('hidden');
+      });
+      window.addEventListener('resize', () => { w.__fartaResize && w.__fartaResize(); w.__fartaSpaceBuild && w.__fartaSpaceBuild(); }, { passive: true });
+      document.addEventListener('astro:before-swap', () => { cancelAnimationFrame(w.__fartaRaf); w.__fartaResize = null; });
+      document.addEventListener('astro:page-load', initPage);
+    }
+    initPage();
+  </script>
+</body>
+</html>

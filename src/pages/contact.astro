@@ -1,0 +1,206 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout title="درخواست جلسه کشف نیاز" description="لطفاً اطلاعات اولیه کسب‌وکار و دغدغه اصلی خود را ثبت فرمایید. برای حفظ امنیت، در این مرحله نیازی به ارسال هیچ‌گونه رمز عبور یا دسترسی مدیریتی نیست.">
+
+    <section>
+        <div class="container" style="max-width:840px;">
+            <div class="form-panel reveal" id="fartaFormPanel">
+                <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:10px; margin-bottom:14px;">
+                    <span class="pill reveal" id="formPill" style="margin:0;">گام اول همکاری با فرطا</span>
+                    <div style="display:flex; flex-wrap:wrap; gap:8px;">
+                        <button type="button" data-urgent="1" class="btn btn-danger" style="padding:7px 14px; font-size:12px;">سایتم دچار اختلال فوری است</button>
+                        <button type="button" data-urgent="0" class="btn btn-secondary" style="padding:7px 14px; font-size:12px;">درخواست عادی</button>
+                    </div>
+                </div>
+                <h1 class="reveal" id="formHeading" style="font-size:26px;">درخواست جلسه کشف نیاز و بررسی سایت</h1>
+                <p style="font-size:14px; color:var(--color-muted); margin-bottom:18px;">
+                    لطفاً اطلاعات اولیه کسب‌وکار و دغدغه اصلی خود را ثبت فرمایید. برای حفظ امنیت، در این مرحله نیازی به ارسال هیچ‌گونه رمز عبور یا دسترسی مدیریتی نیست.
+                </p>
+
+                <form id="leadForm" method="post" action="/contact.php">
+                    <input type="hidden" name="is_emergency" id="is_emergency" value="0">
+                    <input type="text" name="website_hp" style="display:none;" tabindex="-1" autocomplete="off">
+
+                    <div class="grid-2">
+                        <div class="field">
+                            <label for="f_full_name">نام و نام خانوادگی *</label>
+                            <input id="f_full_name" type="text" name="full_name" class="input" required placeholder="نام و نام خانوادگی شما">
+                        </div>
+                        <div class="field">
+                            <label for="f_business_name">نام فروشگاه یا کسب‌وکار *</label>
+                            <input id="f_business_name" type="text" name="business_name" class="input" required placeholder="نام برند یا مجموعه">
+                        </div>
+                    </div>
+
+                    <div class="grid-3">
+                        <div class="field">
+                            <label for="f_site_url">نشانی وب‌سایت *</label>
+                            <input id="f_site_url" type="text" name="site_url" class="input" dir="ltr" required placeholder="https://example.ir">
+                        </div>
+                        <div class="field">
+                            <label for="f_contact_method">روش ترجیحی تماس *</label>
+                            <select id="f_contact_method" name="contact_method" required>
+                                <option value="تماس تلفنی">تماس تلفنی</option>
+                                <option value="تلگرام یا واتساپ">پیام‌رسان (تلگرام / واتساپ)</option>
+                                <option value="ایمیل">ایمیل سازمانی</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label for="f_contact_info">شماره موبایل یا آیدی ارتباطی *</label>
+                            <input id="f_contact_info" type="text" name="contact_info" class="input" dir="ltr" required placeholder="0912...">
+                        </div>
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="field">
+                            <label for="service_type">موضوع درخواست *</label>
+                            <select name="service_type" id="service_type" required>
+                                <option value="نیاز به راهنمایی و بررسی اولیه">مطمئن نیستم (نیاز به راهنمایی در جلسه)</option>
+                                <option value="بررسی سلامت فنی سایت">بررسی سلامت فنی سایت</option>
+                                <option value="ارزیابی امنیت فروشگاه">ارزیابی امنیت فروشگاه</option>
+                                <option value="نجات و بازیابی سایت">نجات و بازیابی سایت هک‌شده / مختل</option>
+                                <option value="نگهداری ماهانه">نگهداری ماهانه (بیمه اعتبار فروشگاه)</option>
+                                <option value="بهینه‌سازی عملکرد و سرعت">بهینه‌سازی عملکرد و سرعت</option>
+                                <option value="بهینه‌سازی فنی جست‌وجو (سئوی فنی)">بهینه‌سازی فنی جست‌وجو (سئوی فنی)</option>
+                                <option value="خودکارسازی عملیات فروشگاه">خودکارسازی عملیات فروشگاه</option>
+                                <option value="توسعه نرم‌افزار و یکپارچه‌سازی سفارشی">توسعه نرم‌افزار و ماژول اختصاصی</option>
+                                <option value="همکاری White-label آژانس">همکاری پشت‌صحنه (ویژه آژانس‌های دیجیتال)</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label for="site_status">وضعیت فعلی سایت *</label>
+                            <select name="site_status" id="site_status" required>
+                                <option value="فعال و متقاضی ارزیابی یا نگهداری">فعال است و می‌خواهم ارزیابی یا نگهداری شود</option>
+                                <option value="فعال ولی دارای کندی یا خطای مشخص">فعال است ولی کندی یا مشکل مشخصی دارد</option>
+                                <option value="با اختلال یا مسئله امنیتی">دچار اختلال فوری یا مشکوک به آلودگی است</option>
+                                <option value="هنوز راه‌اندازی نشده">هنوز راه‌اندازی نشده است</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="field">
+                            <label for="f_decision_role">نقش شما در مجموعه *</label>
+                            <select id="f_decision_role" name="decision_role" required>
+                                <option value="مالک یا مدیرعامل">مالک کسب‌وکار / مدیرعامل</option>
+                                <option value="مدیر فنی یا مدیر سایت">مدیر فنی / مسئول سایت</option>
+                                <option value="مدیر پروژه آژانس دیجیتال">مدیر پروژه / آژانس دیجیتال</option>
+                                <option value="سایر">سایر موارد</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label for="urgency">اولویت زمانی شروع *</label>
+                            <select name="urgency" id="urgency" required>
+                                <option value="مسئله جاری و فوری">فوری (در همین هفته)</option>
+                                <option value="آمادگی پیش از کمپین فروش">پیش از کمپین فروش پیش‌رو</option>
+                                <option value="در حال بررسی و برنامه‌ریزی">در مرحله بررسی و برنامه‌ریزی</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label for="f_problem_desc">شرح کوتاه مسئله یا نیاز اصلی شما *</label>
+                            <textarea id="f_problem_desc" name="problem_desc" rows="4" maxlength="1000" required placeholder="لطفاً بدون درج رمز عبور، مشکل فعلی یا هدف مورد نظرتان را به صورت خلاصه بنویسید..."></textarea>
+                    </div>
+
+                    <div class="field" style="display:flex; align-items:flex-start; gap:10px; margin-top:12px;">
+                        <input type="checkbox" id="pCheck" required style="width:18px; height:18px; margin-top:4px;">
+                        <label for="pCheck" style="font-size:13px; font-weight:500;">
+                            <a href="/privacy/" style="color:var(--color-neon); text-decoration:underline;">سیاست حریم خصوصی</a> و <a href="/terms/" style="color:var(--color-neon); text-decoration:underline;">قوانین همکاری با فرطا</a> را مطالعه کرده و می‌پذیرم. *
+                        </label>
+                    </div>
+
+                    <p id="formError" class="hidden" role="alert" style="margin-top:12px; font-size:13px; color:#FCA5A5;"></p>
+                    <button type="submit" id="submitBtn" class="btn btn-primary" style="width:100%; margin-top:10px;">ثبت درخواست جلسه کشف نیاز</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+<script>
+  function toEnglishDigits(str: string) {
+    return str
+      .replace(/[۰-۹]/g, (d) => String('۰۱۲۳۴۵۶۷۸۹'.indexOf(d)))
+      .replace(/[٠-٩]/g, (d) => String('٠١٢٣٤٥٦٧٨٩'.indexOf(d)));
+  }
+
+  function setUrgent(enable: boolean) {
+    const $ = (id: string) => document.getElementById(id) as any;
+    const panel = $('fartaFormPanel'), flag = $('is_emergency'), pill = $('formPill');
+    const title = $('formHeading'), btn = $('submitBtn');
+    if (!panel || !flag || !pill || !title || !btn) return;
+    if (enable) {
+      flag.value = '1';
+      panel.classList.add('urgent-active');
+      pill.innerText = 'مسیر ویژه رسیدگی به اختلال فوری';
+      pill.style.color = '#FCA5A5';
+      title.innerText = 'ثبت درخواست فوری (سایت دچار اختلال یا مشکوک به آلودگی)';
+      if ($('service_type')) $('service_type').value = 'نجات و بازیابی سایت';
+      if ($('site_status')) $('site_status').value = 'با اختلال یا مسئله امنیتی';
+      if ($('urgency')) $('urgency').value = 'مسئله جاری و فوری';
+      btn.innerText = 'ارسال فوری درخواست به تیم فنی';
+      btn.className = 'btn btn-danger';
+    } else {
+      flag.value = '0';
+      panel.classList.remove('urgent-active');
+      pill.innerText = 'گام اول همکاری با فرطا';
+      pill.style.color = '';
+      title.innerText = 'درخواست جلسه کشف نیاز و بررسی سایت';
+      btn.innerText = 'ثبت درخواست جلسه کشف نیاز';
+      btn.className = 'btn btn-primary';
+    }
+    btn.style.width = '100%';
+  }
+
+  function initContact() {
+    const form = document.getElementById('leadForm') as HTMLFormElement | null;
+    if (!form || form.dataset.bound) return;
+    form.dataset.bound = '1';
+
+    const params = new URLSearchParams(window.location.search);
+    const service = params.get('service');
+    const sel = document.getElementById('service_type') as HTMLSelectElement | null;
+    if (service && sel) {
+      sel.value = service;
+      if (sel.selectedIndex === -1) sel.selectedIndex = 0;
+    }
+    if (params.get('mode') === 'urgent') setUrgent(true);
+
+    document.querySelectorAll<HTMLElement>('[data-urgent]').forEach((b) =>
+      b.addEventListener('click', () => setUrgent(b.getAttribute('data-urgent') === '1'))
+    );
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const contactInput = form.querySelector<HTMLInputElement>('[name="contact_info"]');
+      if (contactInput) contactInput.value = toEnglishDigits(contactInput.value);
+
+      const btn = document.getElementById('submitBtn') as HTMLButtonElement;
+      const err = document.getElementById('formError') as HTMLElement;
+      const label = btn.innerText;
+      err.classList.add('hidden');
+      btn.disabled = true;
+      btn.innerText = 'در حال ثبت درخواست...';
+
+      // `npm run dev` has no PHP: go straight to the thank-you page so the flow can be previewed.
+      if (import.meta.env.DEV) { window.location.href = '/thank-you/'; return; }
+
+      try {
+        const res = await fetch('/contact.php', { method: 'POST', body: new FormData(form) });
+        const data = await res.json();
+        if (!res.ok || !data || (data.status !== 'success' && data.status !== 'ok')) throw new Error('send failed');
+        window.location.href = '/thank-you/';
+      } catch (_) {
+        err.textContent = 'ثبت درخواست با مشکل مواجه شد. لطفاً دوباره تلاش کنید یا مستقیماً به info@farta.ir ایمیل بزنید.';
+        err.classList.remove('hidden');
+        btn.disabled = false;
+        btn.innerText = label;
+      }
+    });
+  }
+
+  initContact();
+  document.addEventListener('astro:page-load', initContact);
+</script>
+</Layout>

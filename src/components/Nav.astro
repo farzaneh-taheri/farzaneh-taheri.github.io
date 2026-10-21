@@ -1,0 +1,61 @@
+---
+import { categories, mainLinks } from '../data/site';
+const path = Astro.url.pathname;
+const isCat = path.startsWith('/category-') || path.startsWith('/service-');
+const linkCls = (href: string) =>
+  `whitespace-nowrap py-2 transition-colors hover:text-white ${path === href ? 'text-neon' : ''}`;
+---
+<header class="sticky top-0 z-[60] border-b border-line/70 bg-void/85 backdrop-blur-xl">
+  <div class="mx-auto flex h-[74px] w-[93vw] max-w-[1320px] items-center justify-between gap-5">
+    <a href="/" class="flex shrink-0 items-center gap-3">
+      <div class="grid h-[38px] w-[38px] place-items-center rounded-[10px] bg-gradient-to-br from-neon to-neondim text-[19px] font-black text-void shadow-[0_6px_22px_rgba(57,255,156,.3)]">ف</div>
+      <div>
+        <span class="block whitespace-nowrap text-[17px] font-black leading-tight text-white">فرطا | FARTA</span>
+        <span class="block whitespace-nowrap font-mono text-[11px] text-neon max-[359px]:hidden">امنیت و پایداری وردپرس و ووکامرس</span>
+      </div>
+    </a>
+
+    <!-- Desktop nav: only where it truly fits -->
+    <nav class="hidden items-center gap-5 text-[13.5px] font-semibold text-ink/80 min-[1400px]:flex">
+      <a href="/" class={linkCls('/')}>صفحه اصلی</a>
+      <div class="group relative">
+        <span tabindex="0" class:list={['inline-flex cursor-pointer items-center gap-1 whitespace-nowrap py-2 transition-colors group-hover:text-white group-focus-within:text-white', isCat && 'text-neon']}>
+          <span>خدمات تخصصی</span>
+          <svg class="ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </span>
+        <div class="absolute right-[-40px] top-full z-[80] hidden w-[640px] grid-cols-2 gap-3.5 rounded-2xl border border-white/10 bg-panel p-5 shadow-[0_25px_60px_rgba(0,0,0,.7)] group-hover:grid group-focus-within:grid">
+          {categories.map(c => (
+            <div class="rounded-xl border border-line bg-white/[0.02] p-3 transition-colors hover:border-neon/40 hover:bg-neon/[0.04]">
+              <a href={c.href} class="mb-2 flex items-center justify-between text-[13px] font-extrabold text-neon">
+                <span>{c.title}</span>
+                <svg class="ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+              </a>
+              <div>
+                {c.subs.map(s => <a href={s.href} class="mega-link block whitespace-nowrap py-1 text-[12.5px] text-ink/80">• {s.label}</a>)}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      {mainLinks.map(l => <a href={l.href} class={linkCls(l.href)}>{l.label}</a>)}
+    </nav>
+
+    <div class="flex shrink-0 items-center gap-2.5">
+      <a href="/contact/?mode=urgent" class="btn btn-danger hidden whitespace-nowrap min-[1700px]:inline-flex">اعلام اختلال فوری</a>
+      <a href="/contact/" class="btn btn-primary hidden whitespace-nowrap min-[640px]:inline-flex">درخواست جلسه کشف نیاز</a>
+      <button type="button" data-mobile-toggle aria-label="منو" class="inline-grid h-[42px] w-[42px] place-items-center rounded-[10px] border border-line bg-panel text-white transition-colors hover:border-neon min-[1400px]:hidden">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile / tablet drawer -->
+  <div id="mobileDrawer" class="hidden max-h-[calc(100vh-110px)] overflow-y-auto border-t border-line bg-[#07100c] pb-6 pt-4 min-[1400px]:hidden!">
+    <div class="mx-auto w-[93vw] max-w-[1320px]">
+      <a href="/" class="block border-b border-line py-2.5 text-sm font-semibold text-ink/90">صفحه اصلی</a>
+      {categories.map(c => <a href={c.href} class="block border-b border-line py-2.5 text-sm font-semibold text-ink/90">{c.mobile}</a>)}
+      {mainLinks.map(l => <a href={l.href} class="block border-b border-line py-2.5 text-sm font-semibold text-ink/90">{l.mobile}</a>)}
+      <a href="/contact/?mode=urgent" class="btn btn-danger mt-4 w-full">اعلام اختلال فوری</a>
+    </div>
+  </div>
+</header>

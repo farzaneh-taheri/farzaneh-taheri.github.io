@@ -1,0 +1,261 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout title="امنیت، سلامت فنی و پایداری فروشگاه‌های وردپرسی" description="در یک فروشگاه اینترنتی، باز شدن ظاهر سایت تنها بخشی از ماجراست. امنیت حساب‌های مدیریتی، مقاومت مسیر پرداخت، سلامت نسخه‌های پشتیبان و سرعت بارگذاری صفحات…">
+    <section class="hero-space" style="padding-block: clamp(56px, 8vw, 104px) clamp(200px, 25vw, 350px);">
+        <canvas class="particle-canvas" aria-hidden="true"></canvas>
+        <div class="planet" aria-hidden="true"><div class="planet-grid"></div></div>
+        <div class="container hero-grid relative">
+            <div>
+                <span class="pill reveal"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg> <span>تیم تخصصی امنیت و پایداری وردپرس و ووکامرس</span></span>
+                <h1 class="reveal" data-delay="70">سایت فروشگاهی شما فقط یک ویترین نیست؛ <span class="glitch text-neon" data-text="زیرساخت فروش و اعتبار کسب‌وکار شماست.">زیرساخت فروش و اعتبار کسب‌وکار شماست.</span></h1>
+                <p class="lead reveal" data-delay="140">
+                    در یک فروشگاه اینترنتی، باز شدن ظاهر سایت تنها بخشی از ماجراست. امنیت حساب‌های مدیریتی، مقاومت مسیر پرداخت، سلامت نسخه‌های پشتیبان و سرعت بارگذاری صفحات مستقیماً بر تجربه خرید مشتریان اثر می‌گذارند. فرطا وضعیت فنی و امنیتی فروشگاه شما را بررسی کرده و آن را به یک برنامه اجرایی شفاف و قابل اطمینان تبدیل می‌کند.
+                </p>
+                <div class="reveal" data-delay="210" style="display:flex; flex-wrap:wrap; gap:12px;">
+                    <a href="/contact/" class="btn btn-primary cta-pulse">درخواست جلسه کشف نیاز <svg class="ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></a>
+                    <a href="#services-sec" class="btn btn-secondary">مشاهده خدمات تخصصی</a>
+                    <a href="/contact/?mode=urgent" class="btn btn-danger">سایتم دچار اختلال شده است</a>
+                </div>
+            </div>
+
+            <div class="console-frame reveal" data-delay="160">
+                <div class="radar" aria-hidden="true"></div>
+                <div class="orbit-wrap" aria-hidden="true"><div class="orbit-tilt"><div class="orbit-spin"></div></div></div>
+                <div class="panel hud overflow-hidden rounded-xl border border-line bg-panel/85 shadow-[0_0_60px_-15px_rgba(57,255,156,0.3)] backdrop-blur-md">
+                    <div class="relative h-1 overflow-hidden bg-line/40">
+                        <div class="scanline absolute inset-x-0 h-8 bg-gradient-to-b from-transparent via-neon/50 to-transparent"></div>
+                    </div>
+                    <div class="flex items-center justify-between gap-3 border-b border-line px-5 py-3 text-xs text-muted">
+                        <span class="flex items-center gap-2"><span class="live-dot inline-block h-2 w-2 rounded-full bg-neon shadow-[0_0_8px_var(--color-neon)]"></span>پایش سلامت و امنیت زیرساخت فروشگاه</span>
+                        <span class="flex items-center gap-3">
+                            <span class="live-clock" dir="ltr">--:--:--</span>
+                            <span class="rounded border border-neondim px-2 py-0.5 font-mono text-[11px] text-neon">LIVE</span>
+                        </span>
+                    </div>
+                    <div class="p-5 text-[13px]">
+                        <div class="console-row-in" style="animation-delay:.25s">
+                            <div class="metric-row" style="--d:0s">
+                                <div>
+                                    <strong class="block text-white">۱. امنیت هسته، افزونه‌ها و سطح دسترسی</strong>
+                                    <span style="font-size:11.5px; color:var(--color-muted);">بررسی ۸ گلوگاه نفوذ، حساب‌های مدیران و فایروال</span>
+                                    <div class="seg8" aria-hidden="true"><i style="--i:0"></i><i style="--i:1"></i><i style="--i:2"></i><i style="--i:3"></i><i style="--i:4"></i><i style="--i:5"></i><i style="--i:6"></i><i style="--i:7"></i></div>
+                                </div>
+                                <span class="badge-ok">پایش مستمر</span>
+                            </div>
+                        </div>
+                        <div class="console-row-in" style="animation-delay:.45s">
+                            <div class="metric-row" style="--d:2s">
+                                <div>
+                                    <strong class="block text-white">۲. سلامت بکاپ و تست بازیابی در Staging</strong>
+                                    <span style="font-size:11.5px; color:var(--color-muted);">ذخیره نسخه پشتیبان در فضای مستقل + تست بازگردانی</span>
+                                    <div class="restore-bar" aria-hidden="true"><i></i></div>
+                                </div>
+                                <span class="badge-ok">تأییدشده</span>
+                            </div>
+                        </div>
+                        <div class="console-row-in" style="animation-delay:.65s">
+                            <div class="metric-row" style="--d:4s">
+                                <div>
+                                    <strong class="block text-white">۳. پایداری مسیر پرداخت و قیمت لحظه‌ای</strong>
+                                    <span style="font-size:11.5px; color:var(--color-muted);">کنترل صحت کارکرد سبد خرید و وب‌سرویس نرخ طلا/ارز</span>
+                                    <svg class="ecg" viewBox="0 0 120 22" aria-hidden="true"><g><path d="M-60 11 H-42 L-38 11 L-35 3 L-31 19 L-28 11 H0 H18 L22 11 L25 3 L29 19 L32 11 H60 H78 L82 11 L85 3 L89 19 L92 11 H120" fill="none" stroke="#FBBF24" stroke-width="1.4" stroke-linejoin="round"/></g></svg>
+                                </div>
+                                <span class="badge-warn">حساسیت بالا</span>
+                            </div>
+                        </div>
+                        <div style="margin-top:14px; padding-top:12px; border-top:1px solid var(--color-line); display:flex; flex-wrap:wrap; justify-content:space-between; gap:6px; font-size:12px; color:var(--color-muted);">
+                            <span>استاندارد اجرا: بکاپ پیش از هر تغییر</span>
+                            <span style="color:var(--color-neon);">گزارش دو لایه (مدیریتی + فنی)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="alt">
+        <div class="container">
+            <span class="pill reveal">رویکرد مهندسی و شفاف</span>
+            <h2 class="reveal">از تشخیص دقیق مسئله تا اجرای کنترل‌شده</h2>
+            <p class="lead reveal">
+                ما کار را با شناخت وضعیت فعلی سایت و دغدغه‌های کسب‌وکار شما آغاز می‌کنیم. پیش از شروع هر اقدامی، مشخص می‌شود دقیقاً چه بخش‌هایی بررسی می‌شوند، چه خروجی ملموسی تحویل می‌گیرید و چه مواردی خارج از محدوده توافق است تا هیچ ابهامی در طول همکاری وجود نداشته باشد.
+            </p>
+            <div class="grid-3">
+                <div class="card spot reveal" data-delay="0">
+                    <div>
+                        <h3>۱. تمرکز انحصاری بر وردپرس و ووکامرس</h3>
+                        <p>به‌جای ادعای کار روی تمام پلتفرم‌ها، تخصص خود را به صورت عمیق بر معماری، امنیت و گلوگاه‌های عملکردی فروشگاه‌های ووکامرسی متمرکز کرده‌ایم.</p>
+                    </div>
+                </div>
+                <div class="card spot reveal" data-delay="70">
+                    <div>
+                        <h3>۲. تست در محیط آزمایشی (Staging)</h3>
+                        <p>تغییرات حساس و به‌روزرسانی‌ها ابتدا روی نسخه کپی آزمایشی اعمال و تست می‌شوند تا فرآیند فروش سایت زنده شما دچار وقفه نشود.</p>
+                    </div>
+                </div>
+                <div class="card spot reveal" data-delay="140">
+                    <div>
+                        <h3>۳. گزارش‌دهی به زبان کسب‌وکار</h3>
+                        <p>گزارش‌های ما صرفاً فهرستی از اصطلاحات پیچیده فنی نیستند؛ هر یافته همراه با اثر تجاری، اولویت رسیدگی و راهکار دقیق اصلاح ارائه می‌شود.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services-sec">
+        <div class="container">
+            <span class="pill reveal">معماری خدمات فرطا</span>
+            <h2 class="reveal">چهار حوزه تخصصی و هشت خدمت استاندارد</h2>
+            <p class="lead reveal">بسته به وضعیت فعلی فروشگاه خود، می‌توانید یکی از حوزه‌های زیر را انتخاب کنید یا جزئیات هر یک از ۸ خدمت را مشاهده نمایید:</p>
+            
+    <div class="cat-switcher">
+        <a href="/category-security/" class="">امنیت وردپرس و ووکامرس</a><a href="/category-care/" class="">نگهداری ماهانه و بهینه‌سازی سرعت</a><a href="/category-seo-auto/" class="">سئوی فنی و خودکارسازی عملیات</a><a href="/category-dev/" class="">توسعه نرم‌افزار و ماژول اختصاصی</a>
+    </div>
+            <div class="grid-4">
+        <a href="/service-health-check/" class="card spot reveal" data-delay="0">
+            <div>
+                <div class="icon-wrap"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+                <h3>بررسی سلامت فنی سایت</h3>
+                <p>چکاپ جامع وضعیت فنی، افزونه‌ها، دسترسی‌ها و بکاپ همراه با گزارش اولویت‌بندی‌شده.</p>
+            </div>
+            <div class="card-link">
+                <span>مشاهده جزئیات و محدوده خدمت</span>
+                <svg class="ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            </div>
+        </a>
+    
+        <a href="/service-security-audit/" class="card spot reveal" data-delay="70">
+            <div>
+                <div class="icon-wrap"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></div>
+                <h3>ارزیابی امنیت فروشگاه</h3>
+                <p>بررسی عمیق پیکربندی امنیتی، سطح حمله، افزونه‌ها، مسیر پرداخت و ماژول‌های حساس.</p>
+            </div>
+            <div class="card-link">
+                <span>مشاهده جزئیات و محدوده خدمت</span>
+                <svg class="ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            </div>
+        </a>
+    
+        <a href="/service-site-rescue/" class="card spot reveal" data-delay="140">
+            <div>
+                <div class="icon-wrap"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+                <h3>نجات و بازیابی سایت هک‌شده</h3>
+                <p>واکنش سریع برای مهار آلودگی، پاک‌سازی بدافزار، بازگردانی سایت و سخت‌سازی امنیتی.</p>
+            </div>
+            <div class="card-link">
+                <span>مشاهده جزئیات و محدوده خدمت</span>
+                <svg class="ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            </div>
+        </a>
+    
+        <a href="/service-monthly-care/" class="card spot reveal" data-delay="210">
+            <div>
+                <div class="icon-wrap"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div>
+                <h3>نگهداری ماهانه (بیمه اعتبار فروشگاه)</h3>
+                <p>مراقبت مستمر، بکاپ‌گیری تست‌شده خارج از سرور، آپدیت امن روی Staging و گزارش ارزش ماهانه.</p>
+            </div>
+            <div class="card-link">
+                <span>مشاهده جزئیات و محدوده خدمت</span>
+                <svg class="ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            </div>
+        </a>
+    
+        <a href="/service-speed-optimization/" class="card spot reveal" data-delay="0">
+            <div>
+                <div class="icon-wrap"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+                <h3>بهینه‌سازی عملکرد و سرعت</h3>
+                <p>افزایش سرعت بارگذاری صفحات کلیدی ووکامرس با تست کامل روی Staging بدون اختلال در فروش.</p>
+            </div>
+            <div class="card-link">
+                <span>مشاهده جزئیات و محدوده خدمت</span>
+                <svg class="ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            </div>
+        </a>
+    
+        <a href="/service-technical-seo/" class="card spot reveal" data-delay="70">
+            <div>
+                <div class="icon-wrap"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+                <h3>بهینه‌سازی فنی جست‌وجو (سئوی فنی)</h3>
+                <p>رفع خطاهای ایندکس، ساختار لینک‌ها، نقشه سایت و پاک‌سازی اسپم‌های سئو پس از هک.</p>
+            </div>
+            <div class="card-link">
+                <span>مشاهده جزئیات و محدوده خدمت</span>
+                <svg class="ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            </div>
+        </a>
+    
+        <a href="/service-automation/" class="card spot reveal" data-delay="140">
+            <div>
+                <div class="icon-wrap"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg></div>
+                <h3>خودکارسازی عملیات فروشگاه</h3>
+                <p>اتوماسیون کارهای تکراری، اعلان‌های هوشمند سفارش، اتصال به شیت و قفل ایمنی قیمت طلا.</p>
+            </div>
+            <div class="card-link">
+                <span>مشاهده جزئیات و محدوده خدمت</span>
+                <svg class="ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            </div>
+        </a>
+    
+        <a href="/service-custom-dev/" class="card spot reveal" data-delay="210">
+            <div>
+                <div class="icon-wrap"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+                <h3>توسعه نرم‌افزار و یکپارچه‌سازی سفارشی</h3>
+                <p>طراحی و کدنویسی افزونه‌ها و قابلیت‌های اختصاصی ووکامرس با رعایت استانداردهای امنیتی.</p>
+            </div>
+            <div class="card-link">
+                <span>مشاهده جزئیات و محدوده خدمت</span>
+                <svg class="ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            </div>
+        </a>
+    </div>
+        </div>
+    </section>
+
+    <section class="alt">
+        <div class="container">
+            <span class="pill reveal">اثبات تخصص با مستندات</span>
+            <h2 class="reveal">قبل از تصمیم‌گیری، نمونه گزارش‌ها و روش کار ما را ببینید</h2>
+            <p class="lead reveal">برای انتخاب یک تیم فنی و امنیتی، دیدن ساختار گزارش‌دهی، شیوه ثبت شواهد و شفافیت در تعیین محدوده کار بهترین معیار تصمیم‌گیری است.</p>
+            <div class="grid-3">
+                <a href="/evidence/#reports" class="card spot reveal" data-delay="0">
+                    <div>
+                        <h3>نمونه گزارش‌های فنی و مدیریتی</h3>
+                        <p>مشاهده ساختار گزارش بررسی سلامت، ارزیابی امنیت فروشگاه طلا و گزارش ارزش نگهداری ماهانه.</p>
+                    </div>
+                    <div class="card-link"><span>مشاهده نمونه گزارش‌ها</span> <svg class="ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></div>
+                </a>
+                <a href="/evidence/#cases" class="card spot reveal" data-delay="70">
+                    <div>
+                        <h3>مطالعات موردی (Case Studies)</h3>
+                        <p>بررسی سه سناریوی واقعی و آزمایشگاهی در ایمن‌سازی گالری طلا، همکاری با آژانس‌ها و بازیابی سایت.</p>
+                    </div>
+                    <div class="card-link"><span>مشاهده مطالعات موردی</span> <svg class="ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></div>
+                </a>
+                <a href="/about/" class="card spot reveal" data-delay="140">
+                    <div>
+                        <h3>فرآیند و استانداردهای کاری فرطا</h3>
+                        <p>آشنایی با اصول حفاظت از دسترسی‌ها، سیاست توقف رایگان در برابر خطر و مراحل ۵ گانه شروع همکاری.</p>
+                    </div>
+                    <div class="card-link"><span>آشنایی با روش کار ما</span> <svg class="ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container" style="text-align:center; max-width:760px;">
+            <span class="pill reveal">شروع همکاری</span>
+            <h2 class="reveal">برای بررسی وضعیت سایتتان آماده هستید؟</h2>
+            <p class="lead reveal" style="margin:0 auto 24px;">
+                اطلاعات اولیه سایت و دغدغه اصلی خود را ثبت کنید تا در یک جلسه کوتاه کشف نیاز، بهترین مسیر اجرایی را متناسب با شرایط فروشگاه شما مشخص کنیم.
+            </p>
+            <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:12px;">
+                <a href="/contact/" class="btn btn-primary">درخواست جلسه کشف نیاز <svg class="ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></a>
+                <a href="/faq/" class="btn btn-secondary">مطالعه پرسش‌های متداول</a>
+            </div>
+        </div>
+    </section>
+</Layout>
